@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Count</title>
+</head>
+<body>
+    <h1>Word Count</h1>
+    <textarea id="inputText" rows="4" cols="50" placeholder="Enter a sentence"></textarea>
+    <button onclick="countWords()">Count Words</button>
+    <p id="result"></p>
+
+    <script>
+        function countWords() {
+            // Get the input text from the textarea
+            const inputText = document.getElementById("inputText").value;
+
+            // Split the input text into words using whitespace as the delimiter
+            const words = inputText.split(/\s+/);
+
+            // Create an object to store word counts
+            const wordCounts = {};
+
+            // Count the occurrences of each word
+            for (const word of words) {
+                if (word in wordCounts) {
+                    wordCounts[word]++;
+                } else {
+                    wordCounts[word] = 1;
+                }
+            }
+
+            // Display the word counts in the result paragraph
+            const resultParagraph = document.getElementById("result");
+            resultParagraph.innerHTML = "Word counts:<br>";
+
+            for (const word in wordCounts) {
+                resultParagraph.innerHTML += `${word}: ${wordCounts[word]}<br>`;
+            }
+        }
+    </script>
+</body>
+</html>
